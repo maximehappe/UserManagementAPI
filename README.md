@@ -24,17 +24,12 @@ Key features:
 
 2. Open the project folder in your IDE
 
-3. Build the project:
-   ```
-   ./gradlew build
-   ```
-
-4. Run the application:
+3. Run the application:
    ```
    ./gradlew bootRun
    ```
 
-5. Once the application is running, open the following file in your web browser:
+4. Once the application is running, open the following file in your web browser:
    ```
    src/main/resources/static/index.html
    ```
