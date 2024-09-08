@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Management API Frontend</title>
+    <style>
+        body { font-family: Arial, sans-serif; max-width: 800px; margin: 0 auto; padding: 20px; }
+        form { margin-bottom: 20px; }
+        input, button, select { margin: 5px 0; padding: 10px; font-size: 16px; width: 100%; }
+        #results { border: 1px solid #ccc; padding: 10px; margin-top: 20px; background-color: #f9f9f9; }
+        #loading { display: none; margin-top: 20px; }
+    </style>
+</head>
+<body>
+    <h1>User Management API Frontend</h1>
+
+    <h2>Create User</h2>
+    <form id="createUserForm">
+        <input type="text" id="username" placeholder="Username" required><br>
+        <input type="email" id="email" placeholder="Email" required><br>
+        <input type="password" id="password" placeholder="Password" required><br>
+        <select id="role" required>
+            <option value="USER">User</option>
+            <option value="ADMIN">Admin</option>
+        </select><br>
+        <button type="submit">Create User</button>
+    </form>
+
+    <h2>Get User by ID</h2>
+    <form id="getUserForm">
+        <input type="number" id="userId" placeholder="User ID" required>
+        <button type="submit">Get User</button>
+    </form>
+
+    <h2>Search Users by Name</h2>
+    <form id="searchUsersForm">
+        <input type="text" id="searchUsername" placeholder="Username" required>
+        <button type="submit">Search Users</button>
+    </form>
+
+    <div id="loading">Loading...</div>
+    <div id="results"></div>
+
+    <script>
+        const API_URL = 'http://localhost:8080/api/users';
+
+        const showLoading = () => document.getElementById('loading').style.display = 'block';
+        const hideLoading = () => document.getElementById('loading').style.display = 'none';
+
+        const resetForm = (formId) => {
+            document.getElementById(formId).reset();
+        };
+
+        document.getElementById('createUserForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const userData = {
+                username: document.getElementById('username').value,
+                email: document.getElementById('email').value,
+                password: document.getElementById('password').value,
+                role: document.getElementById('role').value
+            };
+
+            showLoading();
+
+            try {
+                const response = await fetch(API_URL, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(userData)
+                });
+
+                if (!response.ok) throw new Error(`Error: ${response.statusText}`);
+
+                const data = await response.json();
+                document.getElementById('results').innerHTML = `User created: ${JSON.stringify(data)}`;
+                resetForm('createUserForm');
+            } catch (error) {
+                document.getElementById('results').innerHTML = `Error: ${error.message}`;
+            } finally {
+                hideLoading();
+            }
+        });
+
+        document.getElementById('getUserForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const userId = document.getElementById('userId').value;
+
+            showLoading();
+
+            try {
+                const response = await fetch(`${API_URL}/${userId}`);
+                if (!response.ok) throw new Error(`Error: ${response.statusText}`);
+
+                const data = await response.json();
+                document.getElementById('results').innerHTML = `User found: ${JSON.stringify(data)}`;
+            } catch (error) {
+                document.getElementById('results').innerHTML = `Error: ${error.message}`;
+            } finally {
+                hideLoading();
+            }
+        });
+
+        document.getElementById('searchUsersForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const searchUsername = document.getElementById('searchUsername').value;
+
+            showLoading();
+
+            try {
+                const response = await fetch(`${API_URL}/search?username=${searchUsername}`);
+                if (!response.ok) throw new Error(`Error: ${response.statusText}`);
+
+                const data = await response.json();
+                document.getElementById('results').innerHTML = `Users found: ${JSON.stringify(data)}`;
+            } catch (error) {
+                document.getElementById('results').innerHTML = `Error: ${error.message}`;
+            } finally {
+                hideLoading();
+            }
+        });
+    </script>
+</body>
+</html>
