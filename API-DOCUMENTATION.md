@@ -2,7 +2,7 @@
 
 ## Overview
 
-This document provides details on the RESTful API endpoints for the User Management System. The API allows for creating, retrieving, and searching user accounts. The API is built with Spring Boot and Gradle.
+This document provides details on the RESTful API endpoints for the User Management System. The API allows for creating, retrieving, and searching user accounts. The API is built with Spring Boot and uses Gradle and Java.
 
 ## Base URL
 
