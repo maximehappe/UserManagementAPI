@@ -22,10 +22,7 @@ Key features:
    git clone [repository URL]
    ```
 
-2. Navigate to the project directory:
-   ```
-   cd [project-directory]
-   ```
+2. Open the project folder in your IDE
 
 3. Build the project:
    ```
