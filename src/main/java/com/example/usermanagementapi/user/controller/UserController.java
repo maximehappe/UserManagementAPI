@@ -37,6 +37,10 @@ public class UserController {
         // the method would check if the user has the permission to search users based
         // on the current user's role
         List<User> users = userService.searchUsersByName(username);
-        return new ResponseEntity<>(users, HttpStatus.OK);
+        if (!users.isEmpty()) {
+            return new ResponseEntity<>(users, HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
     }
 }
