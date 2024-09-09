@@ -71,6 +71,7 @@ Creates a new user in the system.
   "id": 1,
   "username": "johndoe",
   "email": "john@example.com",
+  "password": "123",
   "role": "USER"
 }
 ```
@@ -96,6 +97,7 @@ Retrieves a user by their ID.
   "id": 1,
   "username": "johndoe",
   "email": "john@example.com",
+  "password": "123",
   "role": "USER"
 }
 ```
@@ -127,12 +129,14 @@ Searches for users by their username.
     "id": 1,
     "username": "johndoe",
     "email": "john@example.com",
+    "password": "123",
     "role": "USER"
   },
   {
     "id": 2,
     "username": "janedoe",
     "email": "jane@example.com",
+    "password": "123",
     "role": "ADMIN"
   }
 ]
@@ -152,5 +156,4 @@ The API uses the following error codes:
 
 - All endpoints return JSON
 - The search endpoint requires admin role permissions, which are checked in the service layer (not      implemented)
-- Passwords are not returned in any responses
 - The email must be unique across all users
