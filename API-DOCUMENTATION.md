@@ -12,8 +12,6 @@ All URLs referenced in the documentation have the following base:
 http://localhost:8080/api/users
 ```
 
-Note: The port number (8080) is assumed. If you're using a different port, please adjust accordingly.
-
 ## User Entity
 
 The User entity represents the structure of user data in the system.
@@ -63,8 +61,6 @@ Creates a new user in the system.
 }
 ```
 
-Note: The `role` field is optional. If not provided, it will likely default to "USER".
-
 #### Success Response
 
 - **Code:** 201 CREATED
@@ -75,9 +71,13 @@ Note: The `role` field is optional. If not provided, it will likely default to "
   "id": 1,
   "username": "johndoe",
   "email": "john@example.com",
+  "password": "123",
   "role": "USER"
 }
 ```
+#### Error Response
+
+- **Code:** 500 Internal Server Error (e.g. Email already exists)
 
 ### Get User by ID
 
@@ -100,6 +100,7 @@ Retrieves a user by their ID.
   "id": 1,
   "username": "johndoe",
   "email": "john@example.com",
+  "password": "123",
   "role": "USER"
 }
 ```
@@ -115,8 +116,8 @@ Searches for users by their username.
 
 - **URL:** `/search`
 - **Method:** `GET`
-- **Auth required:** Yes
-- **Permissions required:** SEARCH_USERS
+- **Auth required:** Yes (not implemented)
+- **Permissions required:** SEARCH_USERS (not implemented)
 - **URL Params:** 
   - `username=[string]`
 
@@ -131,16 +132,22 @@ Searches for users by their username.
     "id": 1,
     "username": "johndoe",
     "email": "john@example.com",
+    "password": "123",
     "role": "USER"
   },
   {
     "id": 2,
     "username": "janedoe",
     "email": "jane@example.com",
+    "password": "123",
     "role": "ADMIN"
   }
 ]
 ```
+
+#### Note:
+If no user was found, an empty Json gets returned. In a production environment this would be handled further with e.g. an exception, or a message
+
 
 ## Error Handling
 
@@ -156,5 +163,4 @@ The API uses the following error codes:
 
 - All endpoints return JSON
 - The search endpoint requires admin role permissions, which are checked in the service layer (not      implemented)
-- Passwords are not returned in any responses
 - The email must be unique across all users
