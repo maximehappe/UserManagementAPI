@@ -75,6 +75,9 @@ Creates a new user in the system.
   "role": "USER"
 }
 ```
+#### Error Response
+
+- **Code:** 500 Internal Server Error (e.g. Email already exists)
 
 ### Get User by ID
 
