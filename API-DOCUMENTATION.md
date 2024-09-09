@@ -116,8 +116,8 @@ Searches for users by their username.
 
 - **URL:** `/search`
 - **Method:** `GET`
-- **Auth required:** Yes
-- **Permissions required:** SEARCH_USERS
+- **Auth required:** Yes (not implemented)
+- **Permissions required:** SEARCH_USERS (not implemented)
 - **URL Params:** 
   - `username=[string]`
 
