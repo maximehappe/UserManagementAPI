@@ -161,5 +161,5 @@ The API uses the following error codes:
 ## Notes
 
 - All endpoints return JSON
-- The search endpoint requires admin role permissions, which are checked in the service layer (not      implemented)
+- The search endpoint requires admin role permissions, which are checked in the controller layer (not      implemented)
 - The email must be unique across all users
