@@ -12,8 +12,6 @@ All URLs referenced in the documentation have the following base:
 http://localhost:8080/api/users
 ```
 
-Note: The port number (8080) is assumed. If you're using a different port, please adjust accordingly.
-
 ## User Entity
 
 The User entity represents the structure of user data in the system.
@@ -62,8 +60,6 @@ Creates a new user in the system.
   "role": "USER"
 }
 ```
-
-Note: The `role` field is optional. If not provided, it will likely default to "USER".
 
 #### Success Response
 
