@@ -145,6 +145,10 @@ Searches for users by their username.
 ]
 ```
 
+#### Note:
+If no user was found, an empty Json gets returned. In a production environment this would be handled further with e.g. an exception, or a message
+
+
 ## Error Handling
 
 The API uses the following error codes:
