@@ -108,8 +108,7 @@ Retrieves a user by their ID.
 #### Error Response
 
 - **Code:** 404 NOT FOUND
-- **Content:** `{ error : "User not found" }`
-
+  
 ### Search Users by Name
 
 Searches for users by their username.
@@ -144,9 +143,9 @@ Searches for users by their username.
   }
 ]
 ```
+#### Error Response
 
-#### Note:
-If no user was found, an empty Json gets returned. In a production environment this would be handled further with e.g. an exception, or a message
+- **Code:** 404 NOT FOUND
 
 
 ## Error Handling
